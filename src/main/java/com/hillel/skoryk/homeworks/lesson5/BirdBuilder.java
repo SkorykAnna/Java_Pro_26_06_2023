@@ -1,21 +1,5 @@
 package com.hillel.skoryk.homeworks.lesson5;
 
-class Bird {
-    public String name;
-    public int weight;
-
-    public Bird(String name, int weight) {
-        this.name = name;
-        this.weight = weight;
-    }
-
-    @Override
-    public String toString() {
-        return "Name: " + name + ", Weight: " + weight + " kg";
-    }
-}
-
-
 public class BirdBuilder {
     private String name;
     private int weight;
@@ -26,13 +10,17 @@ public class BirdBuilder {
     }
 
     public BirdBuilder setWeight(int weight) {
+        if (weight <= 0) {
+            throw new IllegalArgumentException("Weight must be a positive number");
+        }
         this.weight = weight;
         return this;
     }
 
     public Bird build() {
+        if (name == null || name.isEmpty() || weight <= 0) {
+            throw new IllegalArgumentException("Invalid name or weight");
+        }
         return new Bird(name, weight);
     }
 }
-
-

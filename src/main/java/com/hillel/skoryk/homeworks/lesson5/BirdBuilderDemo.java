@@ -1,6 +1,22 @@
 package com.hillel.skoryk.homeworks.lesson5;
 
-// based on c# version, I built same here : D
+class Bird {
+    public String name;
+    public int weight;
+
+    public Bird(String name, int weight) {
+        if (name == null || name.isEmpty() || weight <= 0) {
+            throw new IllegalArgumentException("Invalid name or weight");
+        }
+        this.name = name;
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", Weight: " + weight + " kg";
+    }
+}
 
 public class BirdBuilderDemo {
     public static void main(String[] args) {
