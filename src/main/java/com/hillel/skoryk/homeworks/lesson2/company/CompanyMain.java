@@ -3,7 +3,7 @@ package com.hillel.skoryk.homeworks.lesson2.company;
 import com.hillel.skoryk.homeworks.lesson2.company.car.Car;
 import com.hillel.skoryk.homeworks.lesson2.company.employee.Employee;
 
-public class Main {
+public class CompanyMain {
     public static void main(String[] args) {
 
         //створюємо співробітника
