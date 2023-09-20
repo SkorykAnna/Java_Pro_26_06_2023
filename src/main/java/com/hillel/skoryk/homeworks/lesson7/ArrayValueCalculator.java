@@ -20,19 +20,24 @@ public class ArrayValueCalculator {
         int[][] array = new int[4][4];
         System.out.println("Введіть масив 4x4:");
         for (int i = 0; i < 4; i++) {
+            String[] rowValues = scanner.nextLine().split(" ");
+            if (rowValues.length != 4) {
+                throw new ArraySizeException("Рядок " + (i + 1) + " має неправильну кількість значень.");
+            }
             for (int j = 0; j < 4; j++) {
                 try {
-                    array[i][j] = parseInt(scanner.next());
+                    array[i][j] = parseInt(rowValues[j]);
                 } catch (NumberFormatException e) {
                     throw new ArrayDataException("Рядок " + (i + 1) + ", стовпець " + (j + 1));
                 }
             }
         }
-        if (scanner.hasNext()) {
+        if (scanner.hasNextLine()) {
             throw new ArraySizeException("Масив повинен бути 4x4");
         }
         return array;
     }
+
 
     public static int doCalc(int[][] array) throws ArraySizeException, ArrayDataException {
         if (array.length != 4 || array[0].length != 4) {
