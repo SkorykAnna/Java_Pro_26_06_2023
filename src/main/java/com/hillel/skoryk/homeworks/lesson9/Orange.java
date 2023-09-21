@@ -1,4 +1,7 @@
 package com.hillel.skoryk.homeworks.lesson9;
 
-class Orange extends Fruit {
+public class Orange extends Fruit {
+    public Orange() {
+        super(1.5f);
+    }
 }

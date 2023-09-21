@@ -3,52 +3,42 @@ package com.hillel.skoryk.homeworks.lesson9;
 import java.util.ArrayList;
 import java.util.List;
 
-class Box<T> {
-    private List<T> items;
+class Box<T extends Fruit> {
+    private List<T> fruits = new ArrayList<>();
 
-    public Box() {
-        this.items = new ArrayList<>();
+    void add(T fruit) {
+        fruits.add(fruit);
     }
 
-    public void add(T item) {
-        if (items.isEmpty() || item.getClass() == items.get(0).getClass()) {
-            items.add(item);
-        } else {
-            throw new IllegalArgumentException("Cannot mix fruits of different types in the same box.");
+    void addAll(List<T> fruits) {
+        this.fruits.addAll(fruits);
+    }
+
+    float getWeight() {
+        float totalWeight = 0.0f;
+        for (T fruit : fruits) {
+            totalWeight += fruit.getWeight();
         }
+        return totalWeight;
     }
 
-    public void addAll(List<T> itemsToAdd) {
-        for (T item : itemsToAdd) {
-            add(item);
-        }
+    boolean compare(Box<?> anotherBox) {
+        return Math.abs(this.getWeight() - anotherBox.getWeight()) < 0.0001;
     }
 
-    public float getWeight() {
-        if (items.isEmpty()) {
-            return 0;
-        }
-        if (items.get(0) instanceof Apple) {
-            return items.size() * 1.0f;
-        } else if (items.get(0) instanceof Orange) {
-            return items.size() * 1.5f;
-        }
-        return 0;
-    }
-
-    public boolean compare(Box<?> otherBox) {
-        return Math.abs(this.getWeight() - otherBox.getWeight()) < 0.0001;
-    }
-
-    public void merge(Box<T> otherBox) {
-        if (items.isEmpty() || otherBox.items.isEmpty()) {
+    void merge(Box<T> anotherBox) {
+        if (this == anotherBox) {
             return;
         }
-        if (items.get(0).getClass() == otherBox.items.get(0).getClass()) {
-            items.addAll(otherBox.items);
-            otherBox.items.clear();
+
+        if (fruits.isEmpty()) {
+            fruits.addAll(anotherBox.fruits);
+            anotherBox.fruits.clear();
+        } else if (fruits.get(0).getClass() == anotherBox.fruits.get(0).getClass()) {
+            fruits.addAll(anotherBox.fruits);
+            anotherBox.fruits.clear();
         } else {
-            throw new IllegalArgumentException("Cannot mix fruits of different types in the same box.");
+            throw new IllegalArgumentException("Неможливо об'єднати коробки з різними фруктами.");
         }
     }
 }

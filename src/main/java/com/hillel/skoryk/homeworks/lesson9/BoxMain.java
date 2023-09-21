@@ -22,12 +22,26 @@ public class BoxMain {
         orangeBox.add(new Orange());
         orangeBox.add(new Orange());
 
-        System.out.println("Is appleBox1 equal in weight to appleBox2? " + appleBox1.compare(appleBox2));
-        System.out.println("Is appleBox1 equal in weight to orangeBox? " + appleBox1.compare(orangeBox));
+        System.out.println("Чи рівні за вагою кошики з яблуками? " + (appleBox1.compare(appleBox2)
+                ? "Так, рівні" : "Ні, кошик 1 важчий на " + Math.abs(appleBox1.getWeight() -
+                appleBox2.getWeight()) + " кг"));
+
+        double weightDifference = Math.abs(appleBox1.getWeight() - orangeBox.getWeight());
+
+        if (appleBox1.compare(orangeBox)) {
+            System.out.println("Чи рівні за вагою кошик з яблуками та кошик з апельсинами? Так, рівні");
+        } else if (appleBox1.getWeight() > orangeBox.getWeight()) {
+            System.out.println("Чи рівні за вагою кошик з яблуками та кошик з апельсинами? " +
+                    "Ні, кошик з яблуками важчий на " + weightDifference + " кг");
+        } else {
+            System.out.println("Чи рівні за вагою кошик з яблуками та кошик з апельсинами? " +
+                    "Ні, кошик з апельсинами важчий на " + weightDifference + " кг");
+        }
+
 
         appleBox1.merge(appleBox2);
-        System.out.println("Merged appleBox2 into appleBox1. Now appleBox1 has " + appleBox1.getWeight()
-                + " kg of apples");
+        System.out.println("Яблуки з другого кошика додати до першого. Тепер перший кошик з" +
+                " яблуками має " + appleBox1.getWeight() + " кг яблук.");
     }
 }
 
