@@ -3,7 +3,7 @@ package com.hillel.skoryk.homeworks.lesson9;
 import java.util.ArrayList;
 import java.util.List;
 
-class Box<T extends Fruit> {
+public class Box<T extends Fruit> {
     private List<T> fruits = new ArrayList<>();
 
     void add(T fruit) {
